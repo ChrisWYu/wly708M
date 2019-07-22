@@ -60,7 +60,7 @@ export const powerControlLib = function (level, route) {
                     buttonControl.checkShow = true;//核查
                     break;
                 case DE:
-                    buttonControl.superviseShow = true;//核查
+                    buttonControl.superviseShow = true;//督导
                     break;
                 default :
                     break;

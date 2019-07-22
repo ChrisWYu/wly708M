@@ -49,10 +49,10 @@ const mutations = {
         state[module].tableTotal = tableTotal;
     },
     saveSearchData(state, params) {
-        state[params.module].searchData = params;
+        state[params.module].searchData = params.searchData;
     },
     saveSearchUseData(state, params) {
-        state[params.module].searchUseData = params;
+        state[params.module].searchUseData = params.searchUseData;
     },
     saveOperateRow(state, params) {
         let module = params.module;

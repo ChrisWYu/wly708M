@@ -7,48 +7,50 @@
         <div class="row screen">
             <i class="icon iconfont iconselect"></i>
             <span class="detail" @click="screenDataClick">筛选</span>
-            <span class="detail" @click="backToLast()">返回</span>
         </div>
         <div class="bodyContent hasFooter">
-            <van-list
-                    v-if="tableData.length > 0"
-                    id="van-list"
-                    v-model="loading"
-                    :finished="finished"
-                    finished-text="没有更多了"
-                    @load="onLoad"
-            >
-                <div class="listContent" v-for="item in tableData" :key="item.id">
-                    <div class="row">
+            <van-pull-refresh v-model="isLoading" @refresh="onRefresh">
+                <van-list
+                        v-if="tableData.length > 0"
+                        id="van-list"
+                        v-model="loading"
+                        :finished="finished"
+                        finished-text="没有更多了"
+                        @load="onLoad"
+                >
+                    <div class="listContent" v-for="item in tableData" :key="item.id">
+                        <div class="row">
                         <span class="statusTitle">
                             核查状态：{{item.checkStatus}}
                         </span>
-                        <span class="statusTitle Right">
+                            <span class="statusTitle Right">
                             督导状态：{{item.superviseStatus}}
                         </span>
-                    </div>
-                    <hr class="solidHr"/>
-                    <div class="listLabel">
-                        <div class="labelTitle">物流码：{{item.logisticsCode}}</div>
-                        <p class="labelContent">扫码出库经销商：{{item.scanOutDistributor}}</p>
-                        <p class="labelContent">扫码出库战区：{{item.scanOutWar}}</p>
-                        <!--<p class="labelContent">扫码出库渠道：{{item.checkEndTime}}</p>-->
-                        <p class="labelContent">扫码终端名称：{{item.storeName}}</p>
-                        <p class="labelContent">异常明细：{{item.abnormalSmallCategory}}</p>
-                        <p class="labelContent">战区核查结果：{{item.warCheckResult}}</p>
-                        <p class="labelContent">督导结果：{{item.superviseResult}}</p>
-                        <div class="row" style="text-align: right;margin-top:0.1rem;">
-                            <div v-if="buttonControl.checkShow" class="cusButton cusRed" @click="checkClick(item)">核查
-                            </div>
-                            <!--<div v-if="true" class="cusButton cusRed" @click="checkClick(item)">核查-->
-                            <!--</div>-->
-                            <div v-if="buttonControl.superviseShow" class="cusButton cusRed"
-                                 @click="superviseClick(item)">督导
+                        </div>
+                        <hr class="solidHr"/>
+                        <div class="listLabel">
+                            <div class="labelTitle">物流码：{{item.logisticsCode}}</div>
+                            <p class="labelContent">扫码出库经销商：{{item.scanOutDistributor}}</p>
+                            <p class="labelContent">扫码出库战区：{{item.scanOutWar}}</p>
+                            <!--<p class="labelContent">扫码出库渠道：{{item.checkEndTime}}</p>-->
+                            <p class="labelContent">扫码终端名称：{{item.storeName}}</p>
+                            <p class="labelContent">异常明细：{{item.abnormalSmallCategory}}</p>
+                            <p class="labelContent">战区核查结果：{{item.warCheckResult}}</p>
+                            <p class="labelContent">督导结果：{{item.superviseResult}}</p>
+                            <div class="row" style="text-align: right;margin-top:0.1rem;">
+                                <div v-if="buttonControl.checkShow" class="cusButton cusRed" @click="checkClick(item)">
+                                    核查
+                                </div>
+                                <!--<div v-if="true" class="cusButton cusRed" @click="checkClick(item)">核查-->
+                                <!--</div>-->
+                                <div v-if="buttonControl.superviseShow" class="cusButton cusRed"
+                                     @click="superviseClick(item)">督导
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </van-list>
+                </van-list>
+            </van-pull-refresh>
             <div v-if="tableData.length === 0" class="emptyList">
                 暂无数据～
             </div>
@@ -80,6 +82,7 @@
         },
         data: function () {
             return {
+                isLoading: false,
                 loading: false,
                 finished: false,
                 screenShow: false,
@@ -122,6 +125,10 @@
             },
         },
         methods: {
+            onRefresh() {
+                this.getFirstList();
+                this.isLoading = false;
+            },
             backToLast: function () {
                 this.$router.push({
                     name: 'abnormalScanSuperviseList'
@@ -220,7 +227,7 @@
                 }, 500);
 
             },
-            submitDetailList(){
+            submitDetailList() {
                 this.$http.post("/api/ddadapter/openApi/data", {
                         "code": "00711ZI11",
                         "data": {
