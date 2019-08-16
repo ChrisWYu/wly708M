@@ -61,44 +61,44 @@ Date.prototype.format = function (format) {
 let jsApiList = [
     'biz.contact.choose', 'biz.contact.complexPicker', 'biz.ding.post', 'biz.util.downloadFile', 'biz.util.previewImage', 'biz.util.uploadImage', 'biz.contact.choose', 'biz.user.get', 'device.geolocation.get'
 ]
-// dingTalkM.ddConfig(jsApiList, '/api/ddadapter/dingding/expBarcode/getJsTicketMob').then(re => {
-//     console.log('开始鉴权')
-//     console.log(re)
-//     sessionStorage.setItem('corpId', re.corpId)
-//     // 免登
-//     dingTalkM.authLogin(re.corpId, '/api/ddadapter/dingding/expBarcode/getUserCode').then(res => {
-//         console.log('开始免登')
-//         console.log(res)
-//         // axios.defaults.headers.common['tokenid'] = res.tokenid; //头文件
-//         // axios.defaults.headers.common['tokencode'] = res.tokencode; //头文件
-//         // sessionStorage.setItem("tokencode", res.tokencode);
-//         sessionStorage.setItem('roleid', res.roleid)
-//         sessionStorage.setItem('userid', res.userid)
-//         sessionStorage.setItem('username', res.username)
-//         sessionStorage.setItem('warcode', res.warinfo.warcode)
-//         // //用户名
-//         new Vue({
-//             el: '#app',
-//             router,
-//             store,
-//             template: '<App/>',
-//             components: {
-//                 App
-//             }
-//         })
-//         router.replace({
-//             name: 'abnormalScanSuperviseList'
-//         })
-//     }, err => {
-//         console.log(err)
-//     })
-// }, err => {
-//     console.log(err)
-// })
-new Vue({
-    el: '#app',
-    router,
-    store,
-    components: {App},
-    template: '<App/>'
+dingTalkM.ddConfig(jsApiList, '/api/ddadapter/dingding/expBarcode/getJsTicketMob').then(re => {
+    console.log('开始鉴权')
+    console.log(re)
+    sessionStorage.setItem('corpId', re.corpId)
+    // 免登
+    dingTalkM.authLogin(re.corpId, '/api/ddadapter/dingding/expBarcode/getUserCode').then(res => {
+        console.log('开始免登')
+        console.log(res)
+        // axios.defaults.headers.common['tokenid'] = res.tokenid; //头文件
+        // axios.defaults.headers.common['tokencode'] = res.tokencode; //头文件
+        // sessionStorage.setItem("tokencode", res.tokencode);
+        sessionStorage.setItem('roleid', res.roleid)
+        sessionStorage.setItem('userid', res.userid)
+        sessionStorage.setItem('username', res.username)
+        sessionStorage.setItem('warcode', res.warinfo.warcode)
+        // //用户名
+        new Vue({
+            el: '#app',
+            router,
+            store,
+            template: '<App/>',
+            components: {
+                App
+            }
+        })
+        router.replace({
+            name: 'abnormalScanSuperviseList'
+        })
+    }, err => {
+        console.log(err)
+    })
+}, err => {
+    console.log(err)
 })
+// new Vue({
+//     el: '#app',
+//     router,
+//     store,
+//     components: {App},
+//     template: '<App/>'
+// })

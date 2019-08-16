@@ -128,7 +128,7 @@
         },
         methods: {
             onRefresh() {
-                this.getFirstList(true);
+                this.getFirstList();
                 this.isLoading = false;
             },
             scrollToHistory: function () {
@@ -164,6 +164,10 @@
                 return e.codeA + e.codeB + e.codeC + e.codeD;
             },
             handleClick: function (row) {
+                this.$store.commit('saveOperateRow', {
+                    module: 'abnormalScanSuperviseList',
+                    operateRow: row
+                });
                 this.scrollHeight();
                 this.$router.push(
                     {
@@ -175,6 +179,7 @@
                 );
             },
             searchDataClick: function () {
+                this.searchData['distributor'] = JSON.parse(JSON.stringify(this.searchData))['distributor'];
                 this.searchUseData = JSON.parse(JSON.stringify(this.searchData));
                 this.getFirstList();
             },
@@ -210,7 +215,6 @@
                         this.tableTotal = res.data.data.total;
                     });
                 }
-
             },
             getBottomMoreList() {
                 this.getList().then((res) => {

@@ -12,8 +12,8 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {
-       //target: 'http://10.0.134.187:72/', //正式服务器
-        target: 'http://218.89.67.51:85/', //正式服务器
+       target: 'http://10.0.134.187:72/', //正式服务器
+       // target: 'http://218.89.67.51:85/', //正式服务器
         changeOrigin: true, //是否跨域
         pathRewrite: {
           '^/api': '/api'
@@ -23,7 +23,7 @@ module.exports = {
 
     // Various Dev Server settings
   //  host: '10.2.13.100', // can be overwritten by process.env.HOST
-    host: '172.16.2.223', // can be overwritten by process.env.HOST
+    host: '10.2.5.232', // can be overwritten by process.env.HOST
     port: 8085, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,
@@ -48,12 +48,12 @@ module.exports = {
 
   build: {
     // Template for index.html
-    index: path.resolve(__dirname, '../dist/index.html'),
+    index: path.resolve(__dirname, '../scanexpMob/index.html'),
 
     // Paths
-    assetsRoot: path.resolve(__dirname, '../dist'),
+    assetsRoot: path.resolve(__dirname, '../scanexpMob'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    assetsPublicPath: '/scanexp/mob/',
 
     /**
      * Source Maps

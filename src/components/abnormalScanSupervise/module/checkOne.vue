@@ -10,8 +10,18 @@
             confirmButtonText="提交"
             confirmButtonColor="#F13D3D"
     >
-        <expandDateSelect style="margin: 0 0.16rem;" v-model="date" :currentValue="date" title="日期"
-        ></expandDateSelect>
+        <div style="margin: 0 0.16rem;">
+            <div class="row expandShow">
+                <div class="title">
+                    日期
+                </div>
+                <div class="content">
+                    {{date}}
+                </div>
+            </div>
+        </div>
+        <!--<expandDateSelect style="margin: 0 0.16rem;" v-model="date" :currentValue="date" title="日期"-->
+        <!--&gt;</expandDateSelect>-->
         <expandTextarea style="margin: 0 0.16rem;" v-model="handleResult" :currentValue="handleResult" title="处理结果"
         ></expandTextarea>
     </van-dialog>
@@ -45,7 +55,7 @@
         data: function () {
             return {
                 show: true,
-                date: '',
+                date: new Date().format('yyyy-MM-dd'),
                 handleResult: ''
             }
         },
@@ -115,6 +125,22 @@
     }
 </script>
 <style>
+    .expandShow {
+        font-size: 0.15rem;
+        border-bottom: 0.01rem solid #E5E5E5;
+        padding: 0.14rem 0 0.09em 0;
+        cursor: pointer;
+    }
+
+    .expandShow .title {
+        display: inline-block;
+        width: 0.8rem;
+    }
+
+    .expandShow .content {
+        display: inline-block;
+        width: calc(100% - 1.1rem);
+    }
     /*.checkDialog {*/
     /*height: 100%;*/
     /*width: 100%;*/

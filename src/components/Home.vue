@@ -75,9 +75,35 @@
         color: #9B9B9B;
     }
 
-    /*.row .expandInput:focus {*/
-    /*border: 1px solid #F13D3D;*/
-    /*}*/
+    .row.screenSearch {
+        position: relative;
+        margin-bottom: 0.08rem;
+    }
+
+    .row.screenSearch .iconfont {
+        position: absolute;
+        top: 0.13rem;
+        left: 0.08rem;
+        color: #9B9B9B;
+    }
+
+    .row .expandScreenInput {
+        display: block;
+        /*width: 3.38rem;*/
+        height: 0.4rem;
+        width: 100%;
+        outline: none;
+        border: 0.01rem solid #E5E5E5;
+        border-radius: 0.04rem;
+        padding-left: 0.28rem;
+        /*margin: auto;*/
+        color: #9B9B9B;
+    }
+
+    .row .expandInput:focus, .row .expandScreenInput:focus {
+        border: 1px solid #F13D3D;
+    }
+
     .row .expandInput:hover {
         border: 1px solid #C0C4CC;
     }
@@ -148,11 +174,14 @@
         width: 100%;
         overflow: scroll;
         top: 0.88rem;
-        /*margin-top: 0.84rem;*/
+        /*【】margin-top: 0.84rem;*/
     }
-    .bodyContent.hasFooter{
-        height: calc(100% - 1.62rem);
+
+    .bodyContent.hasFooter {
+        top: 1.1rem;
+        height: calc(100% - 1.89rem);
     }
+
     .footerOperate {
         height: 0.72rem;
         line-height: 0.72rem;
@@ -305,6 +334,30 @@
         background-color: #F13D3D;
     }
 
+    .topContent {
+        position: fixed;
+        width: 100%;
+        left: 0;
+        top: 0;
+        background-color: #FFFFFF;
+        padding: 0.16rem;
+    }
+
+    .topContent .row {
+        margin-top: 0.08rem;
+        font-size: 0.13rem;
+    }
+
+    .topContent .row:nth-child(1) {
+        margin-top: 0;
+        font-size: 0.15rem;
+        font-weight: bold;
+    }
+
+    .topContent .row:nth-child(2) {
+        margin-top: 0.06rem;
+    }
+
     .loading {
         width: 100%;
         height: 100%;
@@ -314,10 +367,4 @@
         background-color: rgba(51, 51, 51, .3)
     }
 
-
-    /*.cusWhite:hover {*/
-    /*border: 1px solid #F8D1D3;*/
-    /*background-color: #FBE6E7;*/
-    /*color: #F13D3D;*/
-    /*}*/
 </style>

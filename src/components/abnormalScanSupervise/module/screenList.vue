@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="screenList">
         <van-popup position="right" class="screenDialog" v-model="show" @close="close">
             <expandSelect v-model="warBelong" :currentValue="warBelong" title="所属战区" showTitle="war_name"
                           showValue="war_code"
@@ -139,7 +139,7 @@
     }
 </script>
 <style>
-    .screenDialog {
+    .screenList .screenDialog {
         height: 100%;
         width: 82%;
         padding: 0.43rem 0.16rem;

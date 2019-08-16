@@ -1,6 +1,10 @@
 <template>
-    <div>
+    <div class="screenDetailList">
         <van-popup position="right" class="screenDialog" v-model="show" @close="close">
+            <div class="row screenSearch"><input class="expandScreenInput" v-model="logisticsCode"
+                                                 placeholder="请输入物流码名称查询" v-on:keyup.13="searchLogisticsCodeClick"/>
+                <i class="icon iconfont iconweibiaoti--2"></i>
+            </div>
             <expandInput v-model="scanOutDistributor" :currentValue="scanOutDistributor" title="出库经销商"></expandInput>
             <!--<expandSelect v-model="scanOutDistributor" :currentValue="scanOutDistributor" title="出库经销商" showTitle="war_name"-->
             <!--showValue="war_code"-->
@@ -54,6 +58,7 @@
                 this.isSupervise = searchUseData.isSupervise;
                 this.scanOutWar = searchUseData.scanOutWar;
                 this.scanOutDistributor = searchUseData.scanOutDistributor;
+                this.logisticsCode = searchUseData.logisticsCode;
                 this.loadingCancel();
             }).catch((err) => {
                 this.loadingCancel();
@@ -67,6 +72,7 @@
             return {
                 loadingStatus: false,
                 show: true,
+                logisticsCode: '',
                 scanOutDistributor: '',
                 scanOutWar: '',
                 isWarCheck: '',
@@ -104,11 +110,17 @@
             close: function () {
                 this.$emit('input', false);
             },
+            searchLogisticsCodeClick() {
+                this.$parent.screenDataSearch({
+                    'logisticsCode': this.logisticsCode,
+                });
+            },
             resetClick() {
                 this.scanOutWar = '';
                 this.isWarCheck = '';
                 this.isSupervise = '';
                 this.scanOutDistributor = '';
+                this.logisticsCode = '';
             },
             confirmClick() {
                 this.$parent.screenDataSearch({
@@ -123,10 +135,10 @@
     }
 </script>
 <style>
-    .screenDialog {
+    .screenDetailList .screenDialog {
         height: 100%;
         width: 82%;
-        padding: 0.43rem 0.16rem;
+        padding: 0.18rem 0.16rem;
     }
 
     .loading .van-loading {
