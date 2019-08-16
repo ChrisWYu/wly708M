@@ -20,8 +20,6 @@
                 </div>
             </div>
         </div>
-        <!--<expandDateSelect style="margin: 0 0.16rem;" v-model="date" :currentValue="date" title="日期"-->
-        <!--&gt;</expandDateSelect>-->
         <expandTextarea style="margin: 0 0.16rem;" v-model="handleResult" :currentValue="handleResult" title="处理结果"
         ></expandTextarea>
     </van-dialog>
